@@ -1,0 +1,19 @@
+- content_for :head do
+  = javascript_include_tag "http://www.zaypay.com/pay/#{@product.payalogue_id}.js"
+
+.row_wrapper
+  .label_wrap
+    %h4 Name
+  .input_wrap
+    = @product.name
+.row_wrapper
+  .label_wrap
+    %h4 Description
+  .input_wrap
+    = @product.description
+.row_wrapper
+  .label_wrap
+    %h4 Pay with Zaypay
+  .input_wrap
+    = link_to image_tag("https://secure.zaypay.com/pay/#{@product.payalogue_id}/img"), "https://secure.zaypay.com/pay/#{@product.payalogue_id}?_rsid=<?=session_id()?>&_raddr=<?=$_SERVER['REMOTE_ADDR']?>&product_id=#{@product.id}", |
+      :onclick => "javascript:return(ZPayment(this));"                                                    
